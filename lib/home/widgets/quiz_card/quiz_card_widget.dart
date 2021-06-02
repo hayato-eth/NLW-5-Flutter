@@ -34,7 +34,7 @@ class QuizCardWidget extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: Text(
-                  "3 de 10",
+                  "3/10",
                   style: AppTextStyles.body11,
                 ),
               ),
