@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "NLW-5-Flutter",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "NLW-5-Flutter (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    }
+  ]
+}
