@@ -4,6 +4,8 @@ import 'package:DevQuiz/shared/models/models.dart';
 
 import './widgets/widgets.dart';
 
+import './challenge.dart';
+
 class ChallengePage extends StatefulWidget {
   final List<QuestionModel> questions;
   const ChallengePage({Key? key, required this.questions}) : super(key: key);
@@ -13,6 +15,17 @@ class ChallengePage extends StatefulWidget {
 }
 
 class _ChallengePageState extends State<ChallengePage> {
+  final controller = ChallengeController();
+  final pageController = PageController();
+
+  @override
+  void initState() {
+    pageController.addListener(() {
+      controller.currentPage = pageController.page!.toInt() + 1;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,13 +41,25 @@ class _ChallengePageState extends State<ChallengePage> {
                   onPressed: () {
                     Navigator.pop(context);
                   }),
-              QuestionIndicatorWidget(),
+              ValueListenableBuilder<int>(
+                valueListenable: controller.currentPageNotifier,
+                builder: (context, value, _) => QuestionIndicatorWidget(
+                  currentPage: value,
+                  lenght: widget.questions.length,
+                ),
+              )
             ],
           ),
         ),
       ),
-      body: QuizWidget(
-        question: widget.questions[0],
+      body: PageView(
+        physics: NeverScrollableScrollPhysics(),
+        controller: pageController,
+        children: widget.questions
+            .map(
+              (e) => QuizWidget(question: e),
+            )
+            .toList(),
       ),
       bottomNavigationBar: SafeArea(
         bottom: true,
@@ -46,7 +71,12 @@ class _ChallengePageState extends State<ChallengePage> {
               Expanded(
                 child: NextButtonWidget.white(
                   label: "Pular",
-                  onTap: () {},
+                  onTap: () {
+                    pageController.nextPage(
+                      duration: Duration(milliseconds: 200),
+                      curve: Curves.linear,
+                    );
+                  },
                 ),
               ),
               SizedBox(width: 7),
