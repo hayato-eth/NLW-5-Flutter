@@ -1,6 +1,6 @@
-import 'package:DevQuiz/challenge/widgets/question_indicator/question_indicator_widget.dart';
-import 'package:DevQuiz/challenge/widgets/quiz/quiz_widget.dart';
 import 'package:flutter/material.dart';
+
+import './widgets/widgets.dart';
 
 class ChallengePage extends StatefulWidget {
   const ChallengePage({Key? key}) : super(key: key);

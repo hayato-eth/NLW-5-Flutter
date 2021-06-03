@@ -1,6 +1,6 @@
-import 'package:DevQuiz/core/app_colors.dart';
-import 'package:DevQuiz/core/core.dart';
 import 'package:flutter/material.dart';
+
+import 'package:DevQuiz/core/core.dart';
 
 class ChartWidget extends StatelessWidget {
   @override
